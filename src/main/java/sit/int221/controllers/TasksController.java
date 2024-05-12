@@ -65,10 +65,7 @@ public class TasksController {
     @ExceptionHandler(TaskNotFoundException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorResponse> handleTaskNotFoundException(TaskNotFoundException ex, WebRequest request) {
-//        ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneOffset.UTC);
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         ErrorResponse errorResponse = new ErrorResponse(
-//                zonedDateTime.format(formatter),
                 HttpStatus.NOT_FOUND.value(),
                 ex.getMessage(),
                 request.getDescription(false)
