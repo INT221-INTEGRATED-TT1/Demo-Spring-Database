@@ -43,25 +43,6 @@ public class TasksController {
         return tasksService.findTaskById(taskId);
     }
 
-    @PostMapping("")
-    @ResponseStatus(HttpStatus.CREATED)
-    public TaskDetailDTO createTask(@Valid @RequestBody NewTaskDTO tasks){
-        Tasks insertedTask = tasksService.insertTask(tasks);
-        return modelMapper.map(insertedTask, TaskDetailDTO.class);
-    }
-
-    @DeleteMapping("/{taskId}")
-    public TaskHomeDTO deleteTask(@PathVariable Integer taskId){
-        Tasks deleteTask = tasksService.removeTask(taskId);
-        return modelMapper.map(deleteTask, TaskHomeDTO.class);
-    }
-
-    @PutMapping("/{taskId}")
-    public TaskDetailDTO putTask(@PathVariable Integer taskId, @RequestBody Tasks newTaskData){
-        Tasks updateTask = tasksService.updateTask(taskId, newTaskData);
-        return modelMapper.map(updateTask, TaskDetailDTO.class);
-    }
-
     @ExceptionHandler(TaskNotFoundException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorResponse> handleTaskNotFoundException(TaskNotFoundException ex, WebRequest request) {
